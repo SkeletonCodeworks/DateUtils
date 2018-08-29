@@ -83,17 +83,18 @@ Date.isoDate() `view` `25e54ae7`
 
 Date.setDateTimeFromYMDHMS(_year, _month, _day, _hour, _minute, _second) `nonpayable` `305069c2`
 
+> Set date and time from year, month, day, hour, minute, second
 
 Inputs
 
 | **type** | **name** | **description** |
 |-|-|-|
-| *uint16* | _year | undefined |
-| *uint8* | _month | undefined |
-| *uint8* | _day | undefined |
-| *uint8* | _hour | undefined |
-| *uint8* | _minute | undefined |
-| *uint8* | _second | undefined |
+| *uint16* | _year | Year as integer |
+| *uint8* | _month | Month as integer |
+| *uint8* | _day | Day as integer |
+| *uint8* | _hour | Hour as integer |
+| *uint8* | _minute | Minute as integer |
+| *uint8* | _second | Second as integer |
 
 
 ## *function* timestampDate
