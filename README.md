@@ -1,130 +1,92 @@
 * [Date](#date)
-  * [terminate](#function-terminate)
-  * [setDateFromYMD](#function-setdatefromymd)
-  * [getTimestamp](#function-gettimestamp)
-  * [hour](#function-hour)
-  * [isoDate](#function-isodate)
-  * [setDateTimeFromYMDHMS](#function-setdatetimefromymdhms)
-  * [timestampDate](#function-timestampdate)
-  * [isoDateTime](#function-isodatetime)
-  * [setDateTimeFromString](#function-setdatetimefromstring)
-  * [dt](#function-dt)
-  * [second](#function-second)
-  * [month](#function-month)
-  * [getDateString](#function-getdatestring)
-  * [day](#function-day)
-  * [owner](#function-owner)
   * [setDateFromString](#function-setdatefromstring)
-  * [setDateTimeFromTimestamp](#function-setdatetimefromtimestamp)
+  * [setDateTimeFromString](#function-setdatetimefromstring)
   * [setDateFromTimestamp](#function-setdatefromtimestamp)
-  * [dtTime](#function-dttime)
+  * [setDateTimeFromTimestamp](#function-setdatetimefromtimestamp)
+  * [setDateFromYMD](#function-setdatefromymd)
+  * [setDateTimeFromYMDHMS](#function-setdatetimefromymdhms)
+  * [getDateString](#function-getdatestring)
   * [getDateTimeString](#function-getdatetimestring)
-  * [weekday](#function-weekday)
-  * [minute](#function-minute)
-  * [year](#function-year)
-* [DateUtils](#dateutils)
-* [StringUtils](#stringutils)
-  * [bytesToUInt](#function-bytestouint)
-  * [uintToBytes](#function-uinttobytes)
-  * [stringToBytes32](#function-stringtobytes32)
-* [strings](#strings)
-  * [log_bytemask](#event-log_bytemask)
+  * [getTimestamp](#function-gettimestamp)
+  * [terminate](#function-terminate)
 
 # Date
 
-Skeleton Codeworks, LLC <skeleton.codeworks@gmail.com>
+> Date object Solidity contract
 
-## *function* terminate
-
-Date.terminate() `nonpayable` `0c08bf88`
-
-> Terminate contract - must be owner
+Skeleton Codeworks, LLC
+<skeleton.codeworks@gmail.com>
 
 
+>      This contract provides multi-purpose storage for date objects in
+>      six different formats, stored as public members.  The formats are:
+>      1) "yyyy-mm-dd" date string format (also known as ISO),
+>      2) "yyyy-mm-dd hh:mm:ss" date and time string format,
+>      3) Unix timestamp format,
+>      4) Dt struct format, a struct with year, month, day, and
+>         weekday attributes,
+>      5) DtTime struct format, a struct with year, month, day, hour,
+>         minute, second and weekday attributes,
+>      6) year, month, day, hour, minute, second, and weekday members on
+>         the contract itself.
+> 
+>      Whenever the contract is set using one of the several available
+>      set functions, including at initialization, then all six of the above
+>      formats are set to the same date and time, so that all members of the
+>      contract will always be in agreement.  The contract can be reset
+>      with a new date any number times.
 
 
-## *function* setDateFromYMD
+### *public members*
 
-Date.setDateFromYMD(_year, _month, _day) `nonpayable` `131dab3d`
+| **type** | **name** | **description** |
+|-|-|-|
+| `uint16` | year | Year (>= 1970, <= 9999) |
+| `uint8` | month | Month (1 - 12) |
+| `uint8` | day | Day (1 - 31) |
+| `uint8` | hour | Hour (0 - 23) |
+| `uint8` | minute | Minute (0 - 59) |
+| `uint8` | second | Second (0 - 59) |
+| `string` | weekday | Day of the week (e.g., "Monday") |
+| `string` | isoDate | Date in ISO format ("yyyy-mm-dd") |
+| `string` | isoDateTime | Date and time in quasi-ISO format ("yyyy-mm-dd hh:mm:ss") |
+| `uint256` | timestampDate | Date in Unix time format |
+| `Dt` | dt | Date as a `Dt` struct (object with members: `uint16` year, `uint8` month, `uint8` day, and `string` weekday) |
+| `DtTime` | dtTime | Date as a `DtTime` struct (object with members: `uint16` year, `uint8` month, `uint8` day, `uint8` hour, `uint8` minute, `uint8` second, and `string` weekday) |
+| *address* | owner | Owner address |
 
-> Set date from year, month, day
+
+### *constructor*
+
+Date(_year, _month, _day)
+
+> Create Date object.  Must be initialized with year, month, day only - all time members are set to 0.
 
 Inputs
 
 | **type** | **name** | **description** |
 |-|-|-|
-| *uint16* | _year | Year as integer |
-| *uint8* | _month | Month as integer |
-| *uint8* | _day | Day as integer |
+| `uint16` | _year | Year as integer |
+| `uint8` | _month | Month as integer |
+| `uint8` | _day | Day as integer |
 
 
-## *function* getTimestamp
+### *function* setDateFromString
 
-Date.getTimestamp() `view` `188ec356`
+Date.setDateFromString(_dt) `nonpayable`
 
-> Get date as timestamp
-
-
-
-Outputs
-
-| **type** | **name** | **description** |
-|-|-|-|
-| *uint256* |  | Returns timestamp as `uint256` |
-
-## *function* hour
-
-Date.hour() `view` `23e5f1c5`
-
-
-
-
-
-## *function* isoDate
-
-Date.isoDate() `view` `25e54ae7`
-
-
-
-
-
-## *function* setDateTimeFromYMDHMS
-
-Date.setDateTimeFromYMDHMS(_year, _month, _day, _hour, _minute, _second) `nonpayable` `305069c2`
-
-> Set date and time from year, month, day, hour, minute, second
+> Set date from date string
 
 Inputs
 
 | **type** | **name** | **description** |
 |-|-|-|
-| *uint16* | _year | Year as integer |
-| *uint8* | _month | Month as integer |
-| *uint8* | _day | Day as integer |
-| *uint8* | _hour | Hour as integer |
-| *uint8* | _minute | Minute as integer |
-| *uint8* | _second | Second as integer |
+| `string` | _dt | Date as ISO date string ("yyyy-mm-dd") |
 
 
-## *function* timestampDate
+### *function* setDateTimeFromString
 
-Date.timestampDate() `view` `38846850`
-
-
-
-
-
-## *function* isoDateTime
-
-Date.isoDateTime() `view` `3c30b781`
-
-
-
-
-
-## *function* setDateTimeFromString
-
-Date.setDateTimeFromString(_dt) `nonpayable` `3fada22b`
+Date.setDateTimeFromString(_dt) `nonpayable`
 
 > Set date and time from date and time string
 
@@ -132,36 +94,71 @@ Inputs
 
 | **type** | **name** | **description** |
 |-|-|-|
-| *string* | _dt | Date as date and time string (yyyy-mm-dd hh:mm:ss) |
+| `string` | _dt | Date as date and time string ("yyyy-mm-dd hh:mm:ss") |
 
 
-## *function* dt
+### *function* setDateFromTimestamp
 
-Date.dt() `view` `3fdb8cbd`
+Date.setDateFromTimestamp(_timestamp) `nonpayable`
 
+> Set date from timestamp
 
+Inputs
 
-
-
-## *function* second
-
-Date.second() `view` `5a8ac02d`
-
-
+| **type** | **name** | **description** |
+|-|-|-|
+| `uint256` | _timestamp | Date as timestamp integer |
 
 
+### *function* setDateTimeFromTimestamp
 
-## *function* month
+Date.setDateTimeFromTimestamp(_timestamp) `nonpayable`
 
-Date.month() `view` `702921f5`
+> Set date and time from timestamp
+
+Inputs
+
+| **type** | **name** | **description** |
+|-|-|-|
+| `uint256` | _timestamp | Date as timestamp integer |
 
 
+### *function* setDateFromYMD
+
+Date.setDateFromYMD(_year, _month, _day) `nonpayable`
+
+> Set date from year, month, day
+
+Inputs
+
+| **type** | **name** | **description** |
+|-|-|-|
+| `uint16` | _year | Year as integer |
+| `uint8` | _month | Month as integer |
+| `uint8` | _day | Day as integer |
 
 
+### *function* setDateTimeFromYMDHMS
 
-## *function* getDateString
+Date.setDateTimeFromYMDHMS(_year, _month, _day, _hour, _minute, _second) `nonpayable`
 
-Date.getDateString() `view` `793a8343`
+> Set date and time from year, month, day, hour, minute, second
+
+Inputs
+
+| **type** | **name** | **description** |
+|-|-|-|
+| `uint16` | _year | Year as integer |
+| `uint8` | _month | Month as integer |
+| `uint8` | _day | Day as integer |
+| `uint8` | _hour | Hour as integer |
+| `uint8` | _minute | Minute as integer |
+| `uint8` | _second | Second as integer |
+
+
+### *function* getDateString
+
+Date.getDateString() `view`
 
 > Get date string
 
@@ -171,74 +168,12 @@ Outputs
 
 | **type** | **name** | **description** |
 |-|-|-|
-| *string* |  | Returns date string as "yyyy-mm-dd" |
-
-## *function* day
-
-Date.day() `view` `7b76ac91`
+| `string` |  | Returns date string as "yyyy-mm-dd" |
 
 
+### *function* getDateTimeString
 
-
-
-## *function* owner
-
-Date.owner() `view` `8da5cb5b`
-
-
-
-
-
-## *function* setDateFromString
-
-Date.setDateFromString(_dt) `nonpayable` `a2c00e4f`
-
-> Set date from date string
-
-Inputs
-
-| **type** | **name** | **description** |
-|-|-|-|
-| *string* | _dt | Date as ISO date string (yyyy-mm-dd) |
-
-
-## *function* setDateTimeFromTimestamp
-
-Date.setDateTimeFromTimestamp(_timestamp) `nonpayable` `c1bec381`
-
-> Set date and time from timestamp
-
-Inputs
-
-| **type** | **name** | **description** |
-|-|-|-|
-| *uint256* | _timestamp | Date as timestamp integer |
-
-
-## *function* setDateFromTimestamp
-
-Date.setDateFromTimestamp(_timestamp) `nonpayable` `c85c2d38`
-
-> Set date from timestamp
-
-Inputs
-
-| **type** | **name** | **description** |
-|-|-|-|
-| *uint256* | _timestamp | Date as timestamp integer |
-
-
-## *function* dtTime
-
-Date.dtTime() `view` `ce449b7b`
-
-
-
-
-
-## *function* getDateTimeString
-
-Date.getDateTimeString() `view` `d048af9e`
+Date.getDateTimeString() `view`
 
 > Get date and time string
 
@@ -248,92 +183,27 @@ Outputs
 
 | **type** | **name** | **description** |
 |-|-|-|
-| *string* |  | Returns date and time string as "yyyy-mm-dd hh:mm:ss" |
-
-## *function* weekday
-
-Date.weekday() `view` `dffe3785`
+| `string` |  | Returns date and time string as "yyyy-mm-dd hh:mm:ss" |
 
 
+### *function* getTimestamp
 
+Date.getTimestamp() `view`
 
-
-## *function* minute
-
-Date.minute() `view` `e89b7222`
+> Get date as timestamp
 
 
 
-
-
-## *function* year
-
-Date.year() `view` `f3269716`
-
-
-
-
-
-
----
-# DateUtils
-
-
----
-# StringUtils
-
-Piper Merriam - <pipermerriam@gmail.com>
-
-## *function* bytesToUInt
-
-StringUtils.bytesToUInt(v) `pure` `81a33a6f`
-
-> Converts a numeric string to it's unsigned integer representation.
-
-Inputs
+Outputs
 
 | **type** | **name** | **description** |
 |-|-|-|
-| *bytes32* | v | The string to be converted. |
+| `uint256` |  | Returns timestamp as `uint256` |
 
 
-## *function* uintToBytes
+### *function* terminate
 
-StringUtils.uintToBytes(v) `pure` `94e8767d`
+Date.terminate() `nonpayable`
 
-> Converts an unsigned integert to its string representation.
+> Terminate contract - must be owner
 
-Inputs
-
-| **type** | **name** | **description** |
-|-|-|-|
-| *uint256* | v | The number to be converted. |
-
-
-## *function* stringToBytes32
-
-StringUtils.stringToBytes32(_src) `pure` `cfb51928`
-
-
-Inputs
-
-| **type** | **name** | **description** |
-|-|-|-|
-| *string* | _src | undefined |
-
-
----
-# strings
-
-## *event* log_bytemask
-
-strings.log_bytemask(mask) `f566b46a`
-
-Arguments
-
-| **type** | **name** | **description** |
-|-|-|-|
-| *bytes32* | mask | not indexed |
-
-
----
