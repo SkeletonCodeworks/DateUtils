@@ -1,4 +1,4 @@
-##### **Donations:** 0x8e702c652adfc77713b23acd46e23962d679c027
+**Donations:** 0x8e702c652adfc77713b23acd46e23962d679c027
 
 * [DateUtils](#dateutils)
   * [isValidYMD](#function-isvalidymd)
