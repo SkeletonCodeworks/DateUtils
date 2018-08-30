@@ -15,6 +15,7 @@
 > Date object Solidity contract
 
 Skeleton Codeworks, LLC
+
 <skeleton.codeworks@gmail.com>
 
 
@@ -53,7 +54,7 @@ Skeleton Codeworks, LLC
 | `uint256` | timestampDate | Date in Unix time format |
 | `Dt` | dt | Date as a `Dt` struct (object with members: `uint16` year, `uint8` month, `uint8` day, and `string` weekday) |
 | `DtTime` | dtTime | Date as a `DtTime` struct (object with members: `uint16` year, `uint8` month, `uint8` day, `uint8` hour, `uint8` minute, `uint8` second, and `string` weekday) |
-| *address* | owner | Owner address |
+| `address` | owner | Owner address |
 
 
 ### *constructor*
