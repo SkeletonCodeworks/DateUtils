@@ -1,5 +1,5 @@
 * [Date](#date)
-  * [public members](#public members)
+  * [public-members](#public-members)
   * [constructor](#constructor)
   * [setDateFromString](#function-setdatefromstring)
   * [setDateTimeFromString](#function-setdatetimefromstring)
@@ -40,7 +40,7 @@ Skeleton Codeworks, LLC
 >      with a new date any number times.
 
 
-### *public members*
+### *public-members*
 
 | **type** | **name** | **description** |
 |-|-|-|
