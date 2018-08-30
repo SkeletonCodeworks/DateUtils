@@ -171,7 +171,7 @@ Outputs
 
 | **type** | **name** | **description** |
 |-|-|-|
-| *string* |  | undefined |
+| *string* |  | Returns date string as "yyyy-mm-dd" |
 
 ## *function* day
 
@@ -248,7 +248,7 @@ Outputs
 
 | **type** | **name** | **description** |
 |-|-|-|
-| *string* |  | undefined |
+| *string* |  | Returns date and time string as "yyyy-mm-dd hh:mm:ss" |
 
 ## *function* weekday
 
