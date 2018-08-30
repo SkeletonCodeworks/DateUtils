@@ -1,4 +1,6 @@
 * [Date](#date)
+  * [public members](#public members)
+  * [constructor](#constructor)
   * [setDateFromString](#function-setdatefromstring)
   * [setDateTimeFromString](#function-setdatetimefromstring)
   * [setDateFromTimestamp](#function-setdatefromtimestamp)
