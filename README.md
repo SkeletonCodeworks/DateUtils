@@ -32,11 +32,13 @@
 
 # Date
 
+Skeleton Codeworks, LLC <skeleton.codeworks@gmail.com>
 
 ## *function* terminate
 
 Date.terminate() `nonpayable` `0c08bf88`
 
+> Terminate contract - must be owner
 
 
 
@@ -45,23 +47,30 @@ Date.terminate() `nonpayable` `0c08bf88`
 
 Date.setDateFromYMD(_year, _month, _day) `nonpayable` `131dab3d`
 
+> Set date from year, month, day
 
 Inputs
 
 | **type** | **name** | **description** |
 |-|-|-|
-| *uint16* | _year | undefined |
-| *uint8* | _month | undefined |
-| *uint8* | _day | undefined |
+| *uint16* | _year | Year as integer |
+| *uint8* | _month | Month as integer |
+| *uint8* | _day | Day as integer |
 
 
 ## *function* getTimestamp
 
 Date.getTimestamp() `view` `188ec356`
 
+> Get date as timestamp
 
 
 
+Outputs
+
+| **type** | **name** | **description** |
+|-|-|-|
+| *uint256* |  | Returns timestamp as `uint256` |
 
 ## *function* hour
 
@@ -117,12 +126,13 @@ Date.isoDateTime() `view` `3c30b781`
 
 Date.setDateTimeFromString(_dt) `nonpayable` `3fada22b`
 
+> Set date and time from date and time string
 
 Inputs
 
 | **type** | **name** | **description** |
 |-|-|-|
-| *string* | _dt | undefined |
+| *string* | _dt | Date as date and time string (yyyy-mm-dd hh:mm:ss) |
 
 
 ## *function* dt
@@ -153,9 +163,15 @@ Date.month() `view` `702921f5`
 
 Date.getDateString() `view` `793a8343`
 
+> Get date string
 
 
 
+Outputs
+
+| **type** | **name** | **description** |
+|-|-|-|
+| *string* |  | undefined |
 
 ## *function* day
 
@@ -177,36 +193,39 @@ Date.owner() `view` `8da5cb5b`
 
 Date.setDateFromString(_dt) `nonpayable` `a2c00e4f`
 
+> Set date from date string
 
 Inputs
 
 | **type** | **name** | **description** |
 |-|-|-|
-| *string* | _dt | undefined |
+| *string* | _dt | Date as ISO date string (yyyy-mm-dd) |
 
 
 ## *function* setDateTimeFromTimestamp
 
 Date.setDateTimeFromTimestamp(_timestamp) `nonpayable` `c1bec381`
 
+> Set date and time from timestamp
 
 Inputs
 
 | **type** | **name** | **description** |
 |-|-|-|
-| *uint256* | _timestamp | undefined |
+| *uint256* | _timestamp | Date as timestamp integer |
 
 
 ## *function* setDateFromTimestamp
 
 Date.setDateFromTimestamp(_timestamp) `nonpayable` `c85c2d38`
 
+> Set date from timestamp
 
 Inputs
 
 | **type** | **name** | **description** |
 |-|-|-|
-| *uint256* | _timestamp | undefined |
+| *uint256* | _timestamp | Date as timestamp integer |
 
 
 ## *function* dtTime
@@ -221,9 +240,15 @@ Date.dtTime() `view` `ce449b7b`
 
 Date.getDateTimeString() `view` `d048af9e`
 
+> Get date and time string
 
 
 
+Outputs
+
+| **type** | **name** | **description** |
+|-|-|-|
+| *string* |  | undefined |
 
 ## *function* weekday
 
